@@ -1,0 +1,52 @@
+{
+  "name": "yakfest",
+  "version": "1.0.0",
+  "description": "RTC Powered app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Kevnz/yakfest.gi"
+  },
+  "keywords": [
+    "rtc",
+    "realtime",
+    "chat",
+    "communication"
+  ],
+  "author": "Kevin Isom <kevin.isom@gmail.com>",
+  "license": "The Unlicense",
+  "bugs": {
+    "url": "https://github.com/Kevnz/yakfest.gi/issues"
+  },
+  "homepage": "https://github.com/Kevnz/yakfest.gi",
+  "devDependencies": {
+    "browserify": "^6.0.3",
+    "browserify-shim": "^3.8.0",
+    "delete": "^0.1.5",
+    "es6ify": "^1.4.0",
+    "gulp": "^3.8.8",
+    "gulp-connect": "^2.0.6",
+    "gulp-gh-pages": "^0.4.0",
+    "gulp-webserver": "^0.8.3",
+    "rtc": "^2.1.7",
+    "stripify": "^1.2.0",
+    "uglifyify": "^2.5.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "Phaser": "./node_modules/phaser/dist/phaser.min.js"
+  },
+  "browserify-shim": {
+    "Phaser": {
+      "exports": "Phaser"
+    }
+  }
+}
