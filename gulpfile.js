@@ -25,8 +25,9 @@ gulp.task('webserver', function() {
       open: true
     }));
 });
+gulp.task('browserify-dev', ['browserify-vid','browserify-chat']);
 
-gulp.task('browserify-dev', function () {
+gulp.task('browserify-vid', function () {
  
     return browserify({ entries:['./src/index.js'],debug: true })
         .transform('browserify-shim')
@@ -42,8 +43,41 @@ gulp.task('browserify-dev', function () {
             console.log('ended');
         });
 });
-
+gulp.task('browserify-chat', function () {
+ 
+    return browserify({ entries:['./src/chat.js'],debug: true })
+        .transform('browserify-shim')
+        .bundle()
+        .on('error', function (e) {
+            console.log('browserify error');
+            console.log(arguments);
+            throw e;
+        })
+        .pipe(source('chat.js'))
+        .pipe(gulp.dest('./public/js')) 
+        .on('end', function () {
+            console.log('ended');
+        });
+});
 gulp.task('browserify-prod', function () {
+ 
+    return browserify({ debug: true,entries:['./src/game.js']
+        })
+        .transform('es6ify')
+        .transform('stripify')
+        .transform( 'uglifyify')
+        .bundle()
+        .on('error', function () {
+            console.log('browserify error');
+            console.log(arguments);
+        })
+        .pipe(source('game.min.js'))
+        .pipe(gulp.dest('./public/js')) 
+        .on('end', function () {
+            console.log('ended');
+        });
+});
+gulp.task('browserify-prod-chat', function () {
  
     return browserify({ debug: true,entries:['./src/game.js']
         })
